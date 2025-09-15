@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Red de Infraestructura WIN Lima</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script> <!--Libreria para grafico -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Red de Infraestructura WIN Lima</h1>
+        <div id="info-panel">
+            <h3>Información del Elemento</h3><input type="button" class="btn-reset" onclick="resetAll()" value="Reset"/>
+            <p id="element-id">ID: -</p>
+            <p id="element-name">Nombre: -</p>
+            <p id="element-type">Tipo: -</p>
+            <p id="element-tecnico">Técnico: -</p>
+            <p id="element-trabajo">Nodo de trabajo: -</p>
+        </div>
+        <div id="chart"></div>
+    </div>
+
+     <!-- Modal primera selección -->
+    <div id="modalPrimeraSeleccion" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModalPrimeraSeleccion()">&times;</span>
+            <h3>¿Deseas seleccionar otro nodo?</h3>
+            <p>Puedes elegir ahora el nodo donde trabaja el técnico.</p>
+            <div class="modal-buttons">
+                <button onclick="confirmarSeleccionOtroNodo(true)">Sí</button>
+                <button onclick="confirmarSeleccionOtroNodo(false)">No</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para preguntar sobre técnicos -->
+    <div id="tecnico-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>¿Hay técnico laborando en esta infraestructura?</h3>
+            <p id="modal-element-info"></p>
+            <div class="modal-buttons">
+                <button onclick="responderTecnico(true)">Sí</button>
+                <button onclick="responderTecnico(false)">No</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para seleccionar nodo de trabajo -->
+    <div id="trabajo-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModalTrabajo()">&times;</span>
+            <h3>Seleccione el nodo donde trabaja el técnico</h3>
+            <p>Haga clic en el nodo específico donde el técnico está trabajando</p>
+            <p id="modal-trabajo-info"></p>
+            <div class="modal-buttons">
+                <button onclick="cancelarSeleccionTrabajo()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
